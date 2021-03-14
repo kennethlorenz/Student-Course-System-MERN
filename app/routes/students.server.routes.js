@@ -1,4 +1,4 @@
-var students = require("../../app/controllers/students.server.controller");
+var students = require("../controllers/students.server.controller");
 
 module.exports = function (app) {
   // handle a get request made to /students path
