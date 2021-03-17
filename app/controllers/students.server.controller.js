@@ -68,12 +68,12 @@ exports.list = function (req, res, next) {
 exports.authenticate = function (req, res, next) {
   // Get credentials from request
   console.log(req.body);
-  const studentNumber = req.body.auth.studentNumber;
+  const email = req.body.auth.email;
   const password = req.body.auth.password;
   console.log(password);
-  console.log(studentNumber);
+  console.log(email);
   //find the student with given studentNumber using static method findOne
-  Student.findOne({ studentNumber: studentNumber }, (err, student) => {
+  Student.findOne({ email: email }, (err, student) => {
     if (err) {
       return next(err);
     } else {
@@ -83,7 +83,7 @@ exports.authenticate = function (req, res, next) {
         // Create a new token with the student id in the payload
         // and which expires 300 seconds after issue
         const token = jwt.sign(
-          { id: student._id, studentNumber: student.studentNumber },
+          { id: student._id, email: student.email },
           jwtKey,
           { algorithm: "HS256", expiresIn: jwtExpirySeconds }
         );
@@ -94,7 +94,7 @@ exports.authenticate = function (req, res, next) {
           maxAge: jwtExpirySeconds * 1000,
           httpOnly: true,
         });
-        res.status(200).send({ screen: student.studentNumber });
+        res.status(200).send({ screen: student.firstName });
         //
         //res.json({status:"success", message: "student found!!!", data:{student:
         //student, token:token}});

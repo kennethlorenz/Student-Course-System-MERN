@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Copyright from "./Copyright";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import View from "./View";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,7 +59,8 @@ function SignIn() {
   const apiUrl = "http://localhost:3000/signin";
 
   // for initial authentication
-  const auth = async () => {
+  const auth = async (event) => {
+    event.preventDefault();
     console.log("calling auth");
     console.log(email);
     try {
@@ -124,7 +126,7 @@ function SignIn() {
               <Typography component="h1" variant="h5">
                 Sign in
               </Typography>
-              <form className={classes.form} noValidate>
+              <form className={classes.form} noValidate onSubmit={auth}>
                 <TextField
                   variant="outlined"
                   margin="normal"
