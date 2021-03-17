@@ -12,6 +12,7 @@ import Nav from "react-bootstrap/Nav";
 //
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import SignUpSuccess from "./components/SignUpSuccess";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <div>
         <Route render={() => <SignIn />} path="/signin" />
         <Route render={() => <SignUp />} path="/signup" />
+        <Route render={() => <SignUpSuccess />} path="/signupsuccess" />
       </div>
     </Router>
   );

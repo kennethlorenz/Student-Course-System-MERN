@@ -26,7 +26,7 @@ var StudentSchema = new Schema({
     required: "Student Number is required",
   },
 
-  phoneNumber: { type: number, required: true },
+  phoneNumber: { type: Number, required: true },
 
   address: { type: String, required: true },
 

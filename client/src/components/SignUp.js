@@ -13,6 +13,7 @@ import Container from "@material-ui/core/Container";
 import Copyright from "./Copyright";
 import { withRouter } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -67,7 +68,7 @@ function SignUp() {
       .post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
-        props.history.push("/show/" + result.data._id);
+        props.history.push("/signupsuccess");
       })
       .catch((error) => setShowLoading(false));
   };
