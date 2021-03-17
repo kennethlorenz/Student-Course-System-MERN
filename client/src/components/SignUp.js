@@ -93,7 +93,7 @@ function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={saveStudent}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -105,6 +105,7 @@ function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  value={student.firstName}
                   onChange={onChange}
                 />
               </Grid>
@@ -117,6 +118,7 @@ function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lastName"
+                  value={student.lastName}
                   onChange={onChange}
                 />
               </Grid>
@@ -130,6 +132,7 @@ function SignUp() {
                   label="Student Number"
                   name="studentNumber"
                   autoComplete="studentNumber"
+                  value={student.studentNumber}
                   onChange={onChange}
                 />
               </Grid>
@@ -142,6 +145,7 @@ function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={student.email}
                   onChange={onChange}
                 />
               </Grid>
@@ -154,6 +158,7 @@ function SignUp() {
                   label="Address"
                   name="address"
                   autoComplete="address"
+                  value={student.address}
                   onChange={onChange}
                 />
               </Grid>
@@ -166,6 +171,7 @@ function SignUp() {
                   label="City"
                   name="city"
                   autoComplete="city"
+                  value={student.city}
                   onChange={onChange}
                 />
               </Grid>
@@ -179,6 +185,7 @@ function SignUp() {
                   label="Phone Number"
                   name="phoneNumber"
                   autoComplete="phoneNumber"
+                  value={student.phoneNumber}
                   onChange={onChange}
                 />
               </Grid>
@@ -192,6 +199,7 @@ function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  value={student.password}
                   onChange={onChange}
                 />
               </Grid>
