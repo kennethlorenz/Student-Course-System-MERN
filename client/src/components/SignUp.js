@@ -74,7 +74,7 @@ function SignUp() {
 
   const onChange = (e) => {
     e.persist();
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setStudent({ ...student, [e.target.name]: e.target.value });
   };
   return (
     <div>

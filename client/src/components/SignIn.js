@@ -134,6 +134,7 @@ function SignIn() {
                   name="email"
                   autoComplete="email"
                   autoFocus
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
@@ -146,6 +147,7 @@ function SignIn() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
 
@@ -179,4 +181,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default withRouter(SignIn);
