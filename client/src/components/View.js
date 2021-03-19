@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function View(props) {
@@ -39,12 +40,11 @@ function View(props) {
               </button>
             </div>
             <div class="col-auto">
-              <button
-                className="btn btn-primary btn-lg align-bottom"
-                onClick={listCourses}
-              >
-                Students
-              </button>
+              <Link to="/students">
+                <button className="btn btn-primary btn-lg align-bottom">
+                  Students
+                </button>
+              </Link>
             </div>
             <div class="col-auto">
               <button

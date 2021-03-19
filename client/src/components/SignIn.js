@@ -126,7 +126,7 @@ function SignIn() {
               <Typography component="h1" variant="h5">
                 Sign in
               </Typography>
-              <form className={classes.form} noValidate onSubmit={auth}>
+              <form className={classes.form} noValidate>
                 <TextField
                   variant="outlined"
                   margin="normal"
@@ -160,6 +160,7 @@ function SignIn() {
                   variant="contained"
                   color="primary"
                   className={classes.submit}
+                  onClick={auth}
                 >
                   Sign In
                 </Button>
