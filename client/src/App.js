@@ -14,6 +14,8 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import SignUpSuccess from "./components/SignUpSuccess";
 import ListStudents from "./components/ListStudents";
+import CreateCourse from "./components/CreateCourse";
+import ListCourses from "./components/ListCourses";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route render={() => <SignUp />} path="/signup" />
         <Route render={() => <SignUpSuccess />} path="/signupsuccess" />
         <Route render={() => <ListStudents />} path="/students" />
+        <Route render={() => <CreateCourse />} path="/createcourse" />
+        <Route render={() => <ListCourses />} path="/courses" />
       </div>
     </Router>
   );

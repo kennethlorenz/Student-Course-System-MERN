@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -35,33 +36,29 @@ const useStyles = makeStyles({
   },
 });
 
-function ListStudents() {
+function ListCourses(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const [listError, setListError] = useState(false);
-  const apiUrl = "http://localhost:3000/students";
-  const classes = useStyles();
+  const apiUrl = "http://localhost:3000/api/courses";
 
   useEffect(() => {
+    setShowLoading(false);
     const fetchData = async () => {
-      axios
-        .get(apiUrl)
-        .then((result) => {
-          console.log("result.data:", result.data);
-          //check if the student has logged in
-          if (result.data.screen !== "auth") {
-            console.log("data in if:", result.data);
-            setData(result.data);
-            setShowLoading(false);
-          }
-        })
-        .catch((error) => {
-          console.log("error in fetchData:", error);
-          setListError(true);
-        });
+      const result = await axios(apiUrl);
+      console.log("results from courses", result.data);
+
+      setData(result.data);
+      setShowLoading(false);
     };
+
     fetchData();
   }, []);
+
+  const showDetail = (id) => {
+    props.history.push({
+      pathname: "/showcourse/" + id,
+    });
+  };
 
   return (
     <div>
@@ -78,21 +75,21 @@ function ListStudents() {
                 <Table className={classes.table} aria-label="customized table">
                   <TableHead>
                     <TableRow>
-                      <StyledTableCell>First Name</StyledTableCell>
-                      <StyledTableCell>Last Name</StyledTableCell>
-                      <StyledTableCell>Email</StyledTableCell>
-                      <StyledTableCell>City</StyledTableCell>
+                      <StyledTableCell>Course Code</StyledTableCell>
+                      <StyledTableCell>Course Name</StyledTableCell>
+                      <StyledTableCell>Section</StyledTableCell>
+                      <StyledTableCell>Semester</StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {data.map((student, id) => (
+                    {data.map((course, id) => (
                       <StyledTableRow key={id}>
                         <StyledTableCell component="th" scope="row">
-                          {student.firstName}
+                          {course.courseCode}
                         </StyledTableCell>
-                        <StyledTableCell>{student.lastName}</StyledTableCell>
-                        <StyledTableCell>{student.email}</StyledTableCell>
-                        <StyledTableCell>{student.city}</StyledTableCell>
+                        <StyledTableCell>{course.courseName}</StyledTableCell>
+                        <StyledTableCell>{course.section}</StyledTableCell>
+                        <StyledTableCell>{course.semester}</StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
@@ -108,4 +105,4 @@ function ListStudents() {
   );
 }
 
-export default ListStudents;
+export default withRouter(ListCourses);
