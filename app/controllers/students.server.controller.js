@@ -83,7 +83,11 @@ exports.authenticate = function (req, res, next) {
         // Create a new token with the student id in the payload
         // and which expires 300 seconds after issue
         const token = jwt.sign(
-          { id: student._id, email: student.email },
+          {
+            id: student._id,
+            email: student.email,
+            firstName: student.firstName,
+          },
           jwtKey,
           { algorithm: "HS256", expiresIn: jwtExpirySeconds }
         );
@@ -143,7 +147,7 @@ exports.welcome = (req, res) => {
   // Finally, return the welcome message to the student, along with their
   // firstName given in the token
   // use back-quotes here
-  res.send(`${payload.firstName}`);
+  res.send(`${payload.email}`);
 };
 
 //sign out function in controller

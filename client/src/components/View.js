@@ -39,14 +39,14 @@ function View(props) {
                 Courses
               </button>
             </div>
-            <div class="col-auto">
+            <div className="col-auto">
               <Link to="/students">
                 <button className="btn btn-primary btn-lg align-bottom">
                   Students
                 </button>
               </Link>
             </div>
-            <div class="col-auto">
+            <div className="col-auto">
               <button
                 className="btn btn-primary btn-lg align-bottom"
                 onClick={listCourses}
