@@ -53,6 +53,7 @@ function SignIn() {
   const classes = useStyles();
   //state variable for the screen, admin or user
   const [screen, setScreen] = useState("auth");
+  const [screenEmail, setScreenEmail] = useState("");
   //store input field data, user name and password
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -70,9 +71,11 @@ function SignIn() {
       const res = await axios.post(apiUrl, loginData);
       console.log(res.data.auth);
       console.log(res.data.screen);
+      console.log(res.data.email);
       //process the response
       if (res.data.screen !== undefined) {
         setScreen(res.data.screen);
+        setScreenEmail(res.data.email);
         console.log(res.data.screen);
       }
     } catch (e) {
@@ -91,10 +94,12 @@ function SignIn() {
       //
       if (res.data.screen !== undefined) {
         setScreen(res.data.screen);
+        setScreenEmail(res.data.email);
         console.log(res.data.screen);
       }
     } catch (e) {
       setScreen("auth");
+      setScreenEmail("");
       console.log(e);
     }
   };
@@ -179,7 +184,12 @@ function SignIn() {
           </Grid>
         </Grid>
       ) : (
-        <View screen={screen} setScreen={setScreen} />
+        <View
+          screen={screen}
+          setScreen={setScreen}
+          screenEmail={screenEmail}
+          setScreenEmail={setScreenEmail}
+        />
       )}
     </div>
   );

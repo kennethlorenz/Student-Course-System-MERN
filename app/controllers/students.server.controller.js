@@ -98,7 +98,9 @@ exports.authenticate = function (req, res, next) {
           maxAge: jwtExpirySeconds * 1000,
           httpOnly: true,
         });
-        res.status(200).send({ screen: student.firstName });
+        res
+          .status(200)
+          .send({ screen: student.firstName, email: student.email });
         //
         //res.json({status:"success", message: "student found!!!", data:{student:
         //student, token:token}});
@@ -186,7 +188,7 @@ exports.isSignedIn = (req, res) => {
   }
 
   // Finally, token is ok, return the firstName given in the token
-  res.status(200).send({ screen: payload.firstName });
+  res.status(200).send({ screen: payload.firstName, email: payload.email });
 };
 
 //isAuthenticated() method to check whether a student is currently authenticated

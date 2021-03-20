@@ -35,15 +35,14 @@ const useStyles = makeStyles((theme) => ({
 
 function CreateCourse(props) {
   const classes = useStyles();
-  const student = props.screen;
-  console.log("props.screen", props.screen);
+  const email = props.screenEmail;
+  console.log("props.screen", props.screenEmail);
   const [course, setCourse] = useState({
-    _id: "",
     courseCode: "",
     courseName: "",
     section: "",
     semester: "",
-    students: "",
+    email: "",
   });
   const [showLoading, setShowLoading] = useState(false);
 
@@ -57,7 +56,7 @@ function CreateCourse(props) {
       courseName: course.courseName,
       section: course.section,
       semester: course.semester,
-      students: student,
+      email: email,
     };
     //
     axios

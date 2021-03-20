@@ -16,10 +16,12 @@ exports.create = function (req, res) {
   const course = new Course();
   course.courseCode = req.body.courseCode;
   course.courseName = req.body.courseName;
+  course.section = req.body.section;
+  course.semester = req.body.semester;
   console.log(req.body);
   //
   //
-  Student.findOne({ studentNumber: req.body.studentNumber }, (err, student) => {
+  Student.findOne({ email: req.body.email }, (err, student) => {
     if (err) {
       return getErrorMessage(err);
     }

@@ -10,6 +10,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Spinner from "react-bootstrap/Spinner";
+import Button from "@material-ui/core/Button";
 import SignIn from "./SignIn";
 
 const StyledTableCell = withStyles((theme) => ({
@@ -40,6 +41,7 @@ function ListCourses(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "http://localhost:3000/api/courses";
+  const classes = useStyles();
 
   useEffect(() => {
     setShowLoading(false);
@@ -79,6 +81,7 @@ function ListCourses(props) {
                       <StyledTableCell>Course Name</StyledTableCell>
                       <StyledTableCell>Section</StyledTableCell>
                       <StyledTableCell>Semester</StyledTableCell>
+                      <StyledTableCell></StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -90,6 +93,11 @@ function ListCourses(props) {
                         <StyledTableCell>{course.courseName}</StyledTableCell>
                         <StyledTableCell>{course.section}</StyledTableCell>
                         <StyledTableCell>{course.semester}</StyledTableCell>
+                        <StyledTableCell>
+                          <Button type="button" variant="primary">
+                            Students
+                          </Button>
+                        </StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
