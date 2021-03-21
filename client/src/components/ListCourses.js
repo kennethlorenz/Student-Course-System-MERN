@@ -67,6 +67,20 @@ function ListCourses(props) {
     });
   };
 
+  const deleteCourse = (courseToDelete) => {
+    const course = {
+      courseCode: courseToDelete.courseCode,
+      courseName: courseToDelete.courseName,
+      section: courseToDelete.section,
+      semester: courseToDelete.semester,
+    };
+
+    axios
+      .delete("http://localhost:3000/api/courses/" + courseToDelete._id, course)
+      .then((result) => {})
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div>
       {data.length !== 0 ? (
@@ -103,7 +117,11 @@ function ListCourses(props) {
                             <Button variant="contained" color="primary">
                               Students
                             </Button>
-                            <Button variant="contained" color="secondary">
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              onClick={deleteCourse(course)}
+                            >
                               Delete
                             </Button>
                           </div>
