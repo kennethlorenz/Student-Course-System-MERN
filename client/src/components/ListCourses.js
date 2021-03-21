@@ -31,11 +31,16 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 700,
   },
-});
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 function ListCourses(props) {
   const [data, setData] = useState([]);
@@ -81,7 +86,7 @@ function ListCourses(props) {
                       <StyledTableCell>Course Name</StyledTableCell>
                       <StyledTableCell>Section</StyledTableCell>
                       <StyledTableCell>Semester</StyledTableCell>
-                      <StyledTableCell></StyledTableCell>
+                      <StyledTableCell align="center">Actions</StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -94,9 +99,14 @@ function ListCourses(props) {
                         <StyledTableCell>{course.section}</StyledTableCell>
                         <StyledTableCell>{course.semester}</StyledTableCell>
                         <StyledTableCell>
-                          <Button type="button" variant="primary">
-                            Students
-                          </Button>
+                          <div className={classes.root}>
+                            <Button variant="contained" color="primary">
+                              Students
+                            </Button>
+                            <Button variant="contained" color="secondary">
+                              Delete
+                            </Button>
+                          </div>
                         </StyledTableCell>
                       </StyledTableRow>
                     ))}
