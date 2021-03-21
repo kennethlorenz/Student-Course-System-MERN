@@ -40,7 +40,7 @@ var StudentSchema = new Schema({
       "Password should be longer",
     ],
   },
-  courses: [{ type: String, ref: "course" }],
+  courses: [{ type: Schema.Types.ObjectId, ref: "course" }],
 });
 
 // Use a pre-save middleware to hash the password

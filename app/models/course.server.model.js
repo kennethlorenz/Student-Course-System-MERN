@@ -5,7 +5,7 @@ const CourseSchema = new Schema({
   courseName: { type: String, required: true },
   section: { type: String, required: true },
   semester: { type: Number, required: true },
-  students: [{ type: String, ref: "student" }],
+  students: [{ type: Schema.Types.ObjectId, ref: "student" }],
 });
 
 mongoose.model("Course", CourseSchema);
