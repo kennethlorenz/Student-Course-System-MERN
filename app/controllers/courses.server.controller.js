@@ -73,6 +73,24 @@ exports.courseById = function (req, res, next, id) {
     });
 };
 
+exports.studentsByCourse = async (req, res) => {
+  let courseCode = req.body.courseCode;
+  //console.log(courseCode);
+  let student = await Course.find({ courseCode: courseCode })
+    .sort("-courseName")
+    .populate("student", "firstName lastName fullName");
+  try {
+    var studArray = [];
+    //student.forEach(element => {
+    //    studArray.push(element)
+    //});
+    for (let i = 0; i < student.length; i++) {
+      studArray.push(student[i].student);
+    }
+    res.status(200).json(studArray);
+  } catch (e) {}
+};
+
 exports.read = function (req, res) {
   res.status(200).json(req.course);
 };

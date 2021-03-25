@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ListCourses(props) {
   const [data, setData] = useState([]);
+  const [courseCode, setCourseCode] = useState("");
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "http://localhost:3000/api/courses";
   const classes = useStyles();
@@ -64,6 +65,14 @@ function ListCourses(props) {
   const showDetail = (id) => {
     props.history.push({
       pathname: "/showcourse/" + id,
+    });
+  };
+
+  const listStudentsByCourse = (courseCode) => {
+    setCourseCode(courseCode);
+    props.history.push({
+      pathname: "/studentsbycourses",
+      courseCode: courseCode,
     });
   };
 
@@ -100,7 +109,13 @@ function ListCourses(props) {
                         <StyledTableCell>{course.semester}</StyledTableCell>
                         <StyledTableCell>
                           <div className={classes.root}>
-                            <Button variant="contained" color="primary">
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              onClick={() => {
+                                listStudentsByCourse(course.CourseCode);
+                              }}
+                            >
                               Students
                             </Button>
                             <Button
